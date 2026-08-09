@@ -1,26 +1,159 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand palette — sampled from the AB Associates teal-cyan monogram */
+  --color-ink: #0a0e12;
+  --color-ink-2: #0e141a;
+  --color-ink-3: #131a21;
+  --color-porcelain: #f4f1ea;
+  --color-porcelain-dim: #cdc7ba;
+  --color-teal: #0e7c8c;
+  --color-teal-light: #2dd4dd;
+  --color-cyan: #6de3e8;
+  --color-brass: #b89968;
+  --color-brass-dim: #7a6749;
+  --color-line: rgba(244, 241, 234, 0.12);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-ink);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brass-dim) var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-porcelain);
+}
+
+::selection {
+  background: rgba(184, 153, 104, 0.35);
+  color: var(--color-porcelain);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-3);
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-gradient-brand {
+  background: linear-gradient(115deg, #0e7c8c 0%, #2dd4dd 45%, #6de3e8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-brass-dim) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-brass);
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-1 * var(--marquee-distance, 25%)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom cursor (desktop, fine-pointer only) */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-brass);
+  pointer-events: none;
+  z-index: 70;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.5);
+  pointer-events: none;
+  z-index: 70;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-soft), height 0.3s var(--ease-soft),
+    border-color 0.3s ease, background-color 0.3s ease;
 }

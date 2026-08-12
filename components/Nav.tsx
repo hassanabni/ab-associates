@@ -157,11 +157,6 @@ export default function Nav() {
                 </motion.a>
               ))}
             </nav>
-            <div className="px-8 pb-10 eyebrow text-porcelain-dim leading-relaxed">
-              Karachi · Phase 8
-              <br />
-              HMR Waterfront
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

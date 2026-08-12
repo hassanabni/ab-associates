@@ -19,12 +19,13 @@ export default function StructuredData() {
       postalCode: "75600",
       addressCountry: "PK",
     },
+    hasMap: "https://maps.app.goo.gl/8pHticfWBgmzTtKA7",
     areaServed: [
       { "@type": "Place", name: "HMR Waterfront, Karachi" },
       { "@type": "Place", name: "Phase 8, DHA, Karachi" },
       { "@type": "Place", name: "DHA City, Karachi" },
     ],
-    sameAs: ["https://instagram.com/abassociates.co"],
+    sameAs: ["https://instagram.com/ab.associates1"],
     foundingDate: "2004",
   };
 

@@ -65,9 +65,16 @@ export default function Contact() {
             <div className="mt-14 space-y-6">
               <div>
                 <div className="eyebrow text-porcelain-dim/60 text-[0.62rem]!">Office</div>
-                <div className="font-display text-lg mt-1">
-                  Office no M4, teen talwar, Yousuf Grand Square, Khayaban-e-Iqbal Rd, Block 8 Clifton, Karachi, 75600
-                </div>
+                <a
+                  href="https://maps.app.goo.gl/8pHticfWBgmzTtKA7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cursor-hover
+                  className="font-display text-lg mt-1 inline-block border-b border-transparent hover:border-brass hover:text-brass transition-colors leading-relaxed"
+                >
+                  Office no M4, teen talwar, Yousuf Grand Square,
+                  Khayaban-e-Iqbal Rd, Block 8 Clifton, Karachi, 75600
+                </a>
               </div>
               <div>
                 <div className="eyebrow text-porcelain-dim/60 text-[0.62rem]!">Direct</div>
@@ -82,13 +89,13 @@ export default function Contact() {
               <div>
                 <div className="eyebrow text-porcelain-dim/60 text-[0.62rem]!">Instagram</div>
                 <a
-                  href="https://instagram.com/abassociates.co"
+                  href="https://instagram.com/ab.associates1"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor-hover
                   className="font-display text-lg mt-1 inline-block border-b border-line hover:border-brass hover:text-brass transition-colors"
                 >
-                  @abassociates.co
+                  @ab.associates1
                 </a>
               </div>
             </div>

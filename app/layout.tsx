@@ -54,6 +54,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${displaySerif.variable} ${sans.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/media/waterfront-dusk.jpg"
+          fetchPriority="high"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-ink text-porcelain font-sans selection:bg-brass/30 selection:text-porcelain">
         <StructuredData />
         <CustomCursor />

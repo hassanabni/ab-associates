@@ -1,32 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 export default function Hero() {
-  const headlineRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
+    const raf = requestAnimationFrame(() => setRevealed(true));
+
     const ctx = gsap.context(() => {
-      const words = headlineRef.current?.querySelectorAll(".word-mask > span");
-      if (!words) return;
-
-      gsap.set(words, { yPercent: 110 });
-      gsap.to(words, {
-        yPercent: 0,
-        duration: 1.4,
-        ease: "power4.out",
-        stagger: 0.09,
-        delay: 0.5,
-      });
-
-      gsap.fromTo(
-        ".hero-fade",
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 1.5, stagger: 0.15 }
-      );
-
       gsap.fromTo(
         ".hero-video-wrap",
         { scale: 1.15 },
@@ -34,7 +18,10 @@ export default function Hero() {
       );
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      cancelAnimationFrame(raf);
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -58,33 +45,47 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/40" />
       </div>
 
-      <div className="hero-fade absolute top-24 right-6 md:right-12 z-10 hidden md:flex flex-col items-end opacity-0 text-right">
+      <div
+        className={`absolute top-24 right-6 md:right-12 z-10 hidden md:flex flex-col items-end text-right transition-all duration-700 ease-out ${
+          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+        }`}
+      >
         <span className="eyebrow text-porcelain/70 text-[0.62rem]!">24.8138&deg; N, 67.0300&deg; E</span>
         <span className="eyebrow text-brass/70 text-[0.62rem]! mt-1">Karachi, Sindh</span>
       </div>
 
       <div className="relative z-10 flex h-full flex-col justify-end px-6 md:px-12 pb-10 sm:pb-16 md:pb-20 [@media(max-height:480px)]:justify-center [@media(max-height:480px)]:pt-20">
         <div className="max-w-[1600px] mx-auto w-full">
-          <div className="hero-fade eyebrow mb-3 sm:mb-6 opacity-0 [@media(max-height:480px)]:hidden">
+          <div
+            className={`eyebrow mb-3 sm:mb-6 transition-all duration-700 ease-out [@media(max-height:480px)]:hidden ${
+              revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            }`}
+          >
             AB Associates Est. 2004
           </div>
 
-          <div ref={headlineRef} className="overflow-hidden">
+          <div className="overflow-hidden">
             <h1 className="font-display font-light text-porcelain leading-[0.95] text-[13vw] md:text-[7.2vw] [@media(max-height:480px)]:text-[8vw] tracking-tight">
               <span className="word-mask inline-block overflow-hidden align-top">
-                <span className="inline-block">Real&nbsp;Estate,</span>
+                <span className="inline-block animate-word-reveal">Real&nbsp;Estate,</span>
               </span>
               <br />
               <span className="word-mask inline-block overflow-hidden align-top">
-                <span className="inline-block italic text-gradient-brand">Considered</span>
+                <span className="inline-block italic text-gradient-brand animate-word-reveal [animation-delay:80ms]">
+                  Considered
+                </span>
               </span>
               <span className="word-mask inline-block overflow-hidden align-top">
-                <span className="inline-block">.</span>
+                <span className="inline-block animate-word-reveal [animation-delay:140ms]">.</span>
               </span>
             </h1>
           </div>
 
-          <div className="hero-fade mt-4 sm:mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8 opacity-0 [@media(max-height:480px)]:hidden">
+          <div
+            className={`mt-4 sm:mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8 transition-all duration-700 ease-out delay-100 [@media(max-height:480px)]:hidden ${
+              revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            }`}
+          >
             <p className="max-w-md text-porcelain-dim text-base md:text-lg font-light leading-relaxed">
               A private consultancy for acquisition, advisory, and portfolio
               strategy — twenty years of hands-on experience in Karachi&rsquo;s

@@ -56,7 +56,7 @@ export default function Nav() {
           >
             <Image
               src="/media/logo-mark.png"
-              alt="AB Associates"
+              alt="AB Associates logo"
               width={36}
               height={36}
               className="rounded-sm"
@@ -126,7 +126,7 @@ export default function Nav() {
             <div className="flex items-center justify-between px-6 py-6">
               <Image
                 src="/media/logo-mark.png"
-                alt="AB Associates"
+                alt="AB Associates logo"
                 width={32}
                 height={32}
                 className="rounded-sm"

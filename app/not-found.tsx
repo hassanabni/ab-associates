@@ -6,7 +6,7 @@ export default function NotFound() {
     <main className="min-h-screen flex flex-col items-center justify-center bg-ink text-porcelain px-6 text-center">
       <Image
         src="/media/logo-mark.png"
-        alt="AB Associates"
+        alt="AB Associates logo"
         width={48}
         height={48}
         className="rounded-sm mb-10"

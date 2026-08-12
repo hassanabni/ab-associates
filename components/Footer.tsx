@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex items-center gap-3">
           <Image
             src="/media/logo-mark.png"
-            alt="AB Associates"
+            alt="AB Associates logo"
             width={32}
             height={32}
             className="rounded-sm"

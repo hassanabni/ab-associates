@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 // TODO: once a sending domain is verified in Resend (resend.com/domains),
-// switch FROM_ADDRESS to that domain and confirm CONTACT_INBOX is the real inbox.
-const CONTACT_INBOX = "enquiries@abassociates.pk";
+// switch FROM_ADDRESS to an @abassociates.com.pk address and update CONTACT_INBOX
+// to a dedicated business inbox instead of a personal one.
+const CONTACT_INBOX = "hassann.tehseen@gmail.com";
 const FROM_ADDRESS = "AB Associates Website <onboarding@resend.dev>";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
